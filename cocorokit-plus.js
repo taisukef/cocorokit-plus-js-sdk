@@ -1,4 +1,4 @@
-class CocorokitPlus {
+export class CocorokitPlus {
   static get HIGH() {
     return 1;
   }
@@ -381,6 +381,3 @@ class CocorokitPlus {
     throw error;
   }
 }
-
-module.exports = CocorokitPlus;
-module.exports.default = CocorokitPlus;
