@@ -120,7 +120,7 @@ export class CocorokitPlus {
       }
     });
 
-    c._initialize();
+    await c._initialize();
 
     return c;
   }
