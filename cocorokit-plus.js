@@ -208,7 +208,7 @@ export class CocorokitPlus {
    * @param {Number} mode CocorokitPlus.(PULLUP|NO_PULLS)
    */
   async pinPullUp(pin, mode) {
-    if (pin != this.SENSOR1 && pin != this.SENSOR2) return;
+    if (pin != CocorokitPlus.SENSOR1 && pin != CocorokitPlus.SENSOR2) return;
 
     const value = await this._c12c.pioPullUp.readValue().catch((e) => this._throwError(e));
     let modes = value.getUint8(0);
@@ -227,7 +227,7 @@ export class CocorokitPlus {
    * @returns {Number} CocorokitPlus.(LOW|HIGH)
    */
   async digitalRead(pin) {
-    if (pin != this.SENSOR1 && pin != this.SENSOR2) return;
+    if (pin != CocorokitPlus.SENSOR1 && pin != CocorokitPlus.SENSOR2) return;
 
     const value = await this._c12c.pioInputNotification.readValue().catch((e) => this._throwError(e));
 
