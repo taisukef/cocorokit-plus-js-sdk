@@ -1,0 +1,17 @@
+{
+  "name": "@ux-xu/cocorokit-plus-js-sdk",
+  "version": "1.3.0",
+  "description": "cocorokit+ JavaScript SDK",
+  "main": "cocorokit-plus.js",
+  "author": "Yusaku Nishiwaki",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "@types/web-bluetooth": "0.0.8"
+  },
+  "keywords": [
+    "kurikit",
+    "web-bluetooth",
+    "javascript",
+    "bluetooth"
+  ]
+}
