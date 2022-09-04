@@ -1,5 +1,3 @@
-[English](/README_en.md)
-
 # cocorokit+ JavaScript SDK
 
 ココロキット＋を JavaScript と TypeScript から動かすための SDK
