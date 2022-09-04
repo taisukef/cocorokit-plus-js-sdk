@@ -19,10 +19,10 @@ This module uses Web BLuetooth API. The support of API is limited. Please confir
 Connect to cocorokit+ and turn Red LED on.
 
 ```js
-import CocorokitPlus from "@ux-xu/cocorokit-plus-js-sdk";
+import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
 
-const ccrpls = CocorokitPlus.find(CocorokitPlus.defaultFilter);
-ccrpls.setLED(CocorokitPlus.LED_R, 100);
+const ccrpls = await CocorokitPlus.find();
+await ccrpls.setLED(CocorokitPlus.LED_R, 100);
 ```
 
 ## 関数の説明 | About funcitons
@@ -34,9 +34,9 @@ cocorokit+ JS SDK uses async / await function.
 ### サーボモータの操作 | Control servo motor (change duty)
 
 ```js
-cocoro.setPwmDuty(CocorokitPlus.PWM0, 1450); // サーボ0 の duty を 1450 usec に変更 | change servo zero's duty to 1450 usec
-cocoro.setPwmDutyAll(600, 600, 600, 600); // サーボ0 から 3 の duty を同時に 600usec に変更 | change all servos's duty to 600 usec simultaneously
-cocoro.setPwmDutyTime(CocorokitPlus.PWM0, 2300, 2000); // 2000 ミリ秒に duty が 2300 usec になるようにサーボ0 を動かす | change servo zero's duty 2300 usec after 2000 milli seconds.
+await cocoro.setPwmDuty(CocorokitPlus.PWM0, 1450); // サーボ0 の duty を 1450 usec に変更 | change servo zero's duty to 1450 usec
+await cocoro.setPwmDutyAll(600, 600, 600, 600); // サーボ0 から 3 の duty を同時に 600usec に変更 | change all servos's duty to 600 usec simultaneously
+await cocoro.setPwmDutyTime(CocorokitPlus.PWM0, 2300, 2000); // 2000 ミリ秒に duty が 2300 usec になるようにサーボ0 を動かす | change servo zero's duty 2300 usec after 2000 milli seconds.
 ```
 
 `setPwmDutyTime` は duty が変化する速度をゆっくりにしたいときに利用します。
@@ -53,7 +53,7 @@ const onChanged = (data) => {
   console.log(input4); // 0 or 1
 };
 
-cocoro.startDigitalInputNotification(onChanged);
+await cocoro.startDigitalInputNotification(onChanged);
 ```
 
 ココロキット＋は、センサーの値が変化すると通知が送ります。  
@@ -74,8 +74,8 @@ LED は PWM 制御をしているため、明るさの強さを指定します�
 Cocorokit+ control LED using PWM. Please set target LED and brightness (0-100).
 
 ```js
-cocoro.setLED(CocorokitPlus.LED_R, 100); // 赤を最大強度で光らせる | bright Red LED by max power
-cocoro.setLED(CocorokitPlus.LED_G, 50); // 緑を50％の強度で光らせる | bright Green LED by 50%
-cocoro.setLED(CocorokitPlus.LED_R, 0); // 赤色を消す | turn Red LED off
+await cocoro.setLED(CocorokitPlus.LED_R, 100); // 赤を最大強度で光らせる | bright Red LED by max power
+await cocoro.setLED(CocorokitPlus.LED_G, 50); // 緑を50％の強度で光らせる | bright Green LED by 50%
+await cocoro.setLED(CocorokitPlus.LED_R, 0); // 赤色を消す | turn Red LED off
 ```
 
