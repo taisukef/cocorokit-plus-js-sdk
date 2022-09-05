@@ -10,6 +10,14 @@ You can use cocorokit+ from JavaScript and TypeScript
 
 This module uses Web BLuetooth API. The support of API is limited. Please confirm your device following the link (https://caniuse.com/#feat=web-bluetooth).
 
+## デモ | Demo
+
+ココロキット＋に接続して、フルカラーLEDとスイッチを試すサンプルです。
+
+Connect to cocorokit+ and test the full-color LED and switches.
+
+- [online DEMO](https://taisukef.github.io/cocorokit-plus-js-sdk/)
+
 ## 使い方 | How to use
 
 ココロキット＋に接続して LED を赤色に光らせるサンプルです。

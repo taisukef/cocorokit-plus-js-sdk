@@ -1,0 +1,56 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>ココロキット＋のLEDコントロール</title>
+</head>
+<body>
+
+<h1>ココロキット＋のLEDコントロール</h1>
+<button id=btn>ココロキット＋と接続する</button><br>
+<input type="color" id="color" value="#2f9282"><br>
+<input id="sensor1" type="checkbox">SENSOR1 <input id="sensor2" type="checkbox">SENSOR2
+<hr>
+<div>lib: <a href=https://github.com/taisukef/cocorokit-plus-js-sdk>cocorokit-puls-js-sdk</a> by <a href=https://www.ux-xu.com/>ユカイ工学</a></div>
+<div>src: <a href=https://github.com/taisukef/cocorokit-puls-test>cocorokit-puls-test on GitHub</a></div>
+
+<script type="module">
+//import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
+import { CocorokitPlus } from "./cocorokit-plus.js";
+
+btn.onclick = async () => {
+  const ccrpls = await CocorokitPlus.find();
+  color.oninput = async () => {
+    const c = color.value;
+    const col = (s) => {
+      const n = parseInt(s, 16);
+      //return Math.floor(n / 255 * 100); // linear
+      return Math.floor(Math.pow(n / 255, 2) * 100);
+    };
+    const r = col(c.substring(1, 3));
+    const g = col(c.substring(3, 5));
+    const b = col(c.substring(5, 7));
+    console.log(color.value, r, g, b);
+    await ccrpls.setLED(CocorokitPlus.LED_R, r);
+    await ccrpls.setLED(CocorokitPlus.LED_G, g);
+    await ccrpls.setLED(CocorokitPlus.LED_B, b);
+  };
+  await color.oninput();
+
+  const nn = await ccrpls.startDigitalInputNotification(async (s1, s2) => {
+    console.log(s1, s2);
+    sensor1.checked = s1;
+    sensor2.checked = s2;
+  });
+};
+</script>
+
+<style>
+body {
+  text-align: center;
+}
+input[type=color] {
+  width: 10em;
+  height: 10em;
+  margin: 1em;
+}
+</style>
+
+</body></html>

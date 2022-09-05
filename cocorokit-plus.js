@@ -240,17 +240,13 @@ export class CocorokitPlus {
   async startDigitalInputNotification(callback) {
     this.onReceived = (event) => {
       const value = event.target.value;
-      callback(value.getUint8(0));
+      const n = value.getUint8(0);
+      const s1 = (n >> CocorokitPlus.SENSOR1) & 1;
+      const s2 = (n >> CocorokitPlus.SENSOR2) & 1;
+      callback(s1, s2);
     };
-
-    await this._c12c.pioInputNotification
-      .startNotifications()
-      .then((_) => {
-        this._c12c.pioInputNotification.addEventListener("characteristicvaluechanged", this.onReceived);
-      })
-      .catch((e) => {
-        this._throwError(e);
-      });
+    await this._c12c.pioInputNotification.startNotifications();
+    await this._c12c.pioInputNotification.addEventListener("characteristicvaluechanged", this.onReceived);
   }
 
   /**
