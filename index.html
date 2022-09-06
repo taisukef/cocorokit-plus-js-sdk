@@ -1,9 +1,9 @@
 <!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
-<title>ココロキット＋のLEDコントロール</title>
+<title>ココロキット＋とWeb Bluetooth接続</title>
 </head>
 <body>
 
-<h1>ココロキット＋のLEDコントロール</h1>
+<h1>ココロキット＋とWeb Bluetooth接続</h1>
 <button id=btn>ココロキット＋と接続する</button><br>
 <input type="color" id="color" value="#2f9282"><br>
 <input id="sensor1" type="checkbox">SENSOR1 <input id="sensor2" type="checkbox">SENSOR2<br>
@@ -16,8 +16,8 @@
 <div>src: <a href=https://github.com/taisukef/cocorokit-puls-test>cocorokit-puls-test on GitHub</a></div>
 
 <script type="module">
-//import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
-import { CocorokitPlus } from "./cocorokit-plus.js";
+import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
+//import { CocorokitPlus } from "./cocorokit-plus.js";
 
 btn.onclick = async () => {
   const ccrpls = await CocorokitPlus.find();
