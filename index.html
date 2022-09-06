@@ -16,8 +16,8 @@
 <div>src: <a href=https://github.com/taisukef/cocorokit-puls-test>cocorokit-puls-test on GitHub</a></div>
 
 <script type="module">
-import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
-//import { CocorokitPlus } from "./cocorokit-plus.js";
+//import { CocorokitPlus } from "https://taisukef.github.io/cocorokit-plus-js-sdk/cocorokit-plus.js";
+import { CocorokitPlus } from "./cocorokit-plus.js";
 
 btn.onclick = async () => {
   const ccrpls = await CocorokitPlus.find();
@@ -44,10 +44,14 @@ btn.onclick = async () => {
     sensor2.checked = s2;
   });
   const pwms = [pwm0, pwm1, pwm2, pwm3];
-  for (const pwm of pwms) {
+  for (let i = 0; i < pwms.length; i++) {
+    const pwm = pwms[i];
+    const id = i;
     pwm.oninput = async () => {
-      //await ccrpls.changePwmDutyTime(pwm.value, 20000);
-      await ccrpls.setPwmDuty(pwm.value);
+      const v = pwm.value * 10;
+      console.log("pwm", id, v)
+      //await ccrpls.changePwmDutyTime(id, v, 20000);
+      await ccrpls.setPwmDuty(id, v);
     };
   }
 };
