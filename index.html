@@ -6,7 +6,11 @@
 <h1>ココロキット＋のLEDコントロール</h1>
 <button id=btn>ココロキット＋と接続する</button><br>
 <input type="color" id="color" value="#2f9282"><br>
-<input id="sensor1" type="checkbox">SENSOR1 <input id="sensor2" type="checkbox">SENSOR2
+<input id="sensor1" type="checkbox">SENSOR1 <input id="sensor2" type="checkbox">SENSOR2<br>
+<input id="pwm0" type="range" min=60 max=230>PWM0<br>
+<input id="pwm1" type="range" min=60 max=230>PWM1<br>
+<input id="pwm2" type="range" min=60 max=230>PWM2<br>
+<input id="pwm3" type="range" min=60 max=230>PWM3<br>
 <hr>
 <div>lib: <a href=https://github.com/taisukef/cocorokit-plus-js-sdk>cocorokit-puls-js-sdk</a> by <a href=https://www.ux-xu.com/>ユカイ工学</a></div>
 <div>src: <a href=https://github.com/taisukef/cocorokit-puls-test>cocorokit-puls-test on GitHub</a></div>
@@ -35,10 +39,17 @@ btn.onclick = async () => {
   await color.oninput();
 
   const nn = await ccrpls.startDigitalInputNotification(async (s1, s2) => {
-    console.log(s1, s2);
+    console.log("sensor", s1, s2);
     sensor1.checked = s1;
     sensor2.checked = s2;
   });
+  const pwms = [pwm0, pwm1, pwm2, pwm3];
+  for (const pwm of pwms) {
+    pwm.oninput = async () => {
+      //await ccrpls.changePwmDutyTime(pwm.value, 20000);
+      await ccrpls.setPwmDuty(pwm.value);
+    };
+  }
 };
 </script>
 
